@@ -5,7 +5,7 @@ class Coin():
     def __init__(self, num, window):
         self.num = num
         self.coinList = []
-        self.drawnCoin = []
+        self.selectedPts = []
         self.coinFile = 'coin(1).png'
         self.createCoin(window)
 
@@ -21,8 +21,12 @@ class Coin():
             for y in range(7, 593, 15):
                 self.coinList.append(Point(x, y))
 
+        selectedImg = []
         for i in range(self.num):
-            self.coinList[randrange(2120)].draw(window)
+            selectedImg.append(Image(self.coinList[randrange(2120)], self.coinFile).draw(window))
+
+        for item in selectedImg:
+            self.selectedPts.append(item.getAnchor())
           
 def main():
     win = GraphWin('Coin Test', 800, 600)

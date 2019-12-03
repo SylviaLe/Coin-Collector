@@ -26,6 +26,12 @@ class Player:
         self.playerMove(window)
         count = 0
         
+        if self.player.getAnchor() in self.coin.selectedPts:
+            print('hello')
+            count += 1
+            tempImage = Image(self.player.getAnchor(), 'coin(1).png')
+            tempImage.undraw()
+            
     #def stop(): #stop the player when it hits the boundaries
         
 def main():
