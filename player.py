@@ -6,10 +6,11 @@ class Player:
         self.coinNum = num
         self.coin = Coin(self.coinNum, window)
 
-        self.playFile = 'fox.png'
-        self.iniPos = Point(400, 292)
-        self.player = Image(self.iniPos, self.playFile)
+        self.playerImg = 'fox.png'
+        self.iniPos = Point(300,300)
+        self.player = Image(self.iniPos, self.playerImg)
         self.player.draw(window)
+        self.count = 0
         
     def playerMove(self, window):
         key = window.getKey()
@@ -23,23 +24,22 @@ class Player:
             self.player.move(15, 0)
 
     def collectCoin(self, window):
+
         self.playerMove(window)
-        count = 0
-        
-        if self.player.getAnchor() in self.coin.selectedPts:
-            print('hello')
-            count += 1
-            tempImage = Image(self.player.getAnchor(), 'coin(1).png')
-            tempImage.undraw()
-            
-    #def stop(): #stop the player when it hits the boundaries
-        
+        playerCoords = self.player.getAnchor()
+
+        if (playerCoords.getX() in self.coin.selectedX) and (playerCoords.getY() in self.coin.selectedY)
+        and (self.coin.selectedX.index(playerCoords.getX()) == self.coin.selectedY.index(playerCoords.getY())):
+            i = self.coin.selectedX.index(playerCoords.getX())
+            self.coin.selectedCoins[i].undraw()
+            self.count += 1
+       
 def main():
-    win = GraphWin('Player Test', 800, 600)
-    win.setCoords(0, 0, 800, 600)
+    win = GraphWin('Player Test', 600, 600)
+    win.setCoords(0, 0, 600, 600)
     player = Player(win, 50)
 
-    while True:
+    while player.count < 50:
         player.collectCoin(win)
     
     win.getMouse()
@@ -47,3 +47,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
