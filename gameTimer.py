@@ -13,12 +13,16 @@ class Timer:
         self.clockPos.setText('{:02d}:{:02d}'.format(mins, secs))
         #print('{:02d}:{:02d}'.format(mins, secs), end = '\n')
         if n == 0:
-            print("End of program.")
+            print("")
         else:
             sleep(1)
             self.countdown(n-1, window)
-        Text(Point(500, 350), 'Time Up!').draw(window)
+        #Text(Point(500, 350), 'Time Up!').draw(window)
         self.timeUp = True
+
+    def timeUp(self):
+        if self.timeUp == True:
+            return True
 
 def main():
     win = GraphWin('Time Test', 1000, 800)
