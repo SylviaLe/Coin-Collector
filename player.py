@@ -29,7 +29,6 @@ class Player:
     def collectCoin(self, window):
         self.playerMove(window)
         playerCoords = self.player.getAnchor()
-        print(playerCoords)
 
         for p in self.coin.selectedPts:
             pt_x = p.getX()
