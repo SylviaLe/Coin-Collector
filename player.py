@@ -44,7 +44,7 @@ class Player:
                 text = Text(Point(pt_x,pt_y+40),"+1")
                 text.setFill("coral")
                 text.setStyle("bold")
-                text.setSize(20)
+                text.setSize(16)
                 text.draw(window)
                 time.sleep(0.2)
                 text.undraw()
