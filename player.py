@@ -1,5 +1,6 @@
 from graphics import *
 from coin import *
+import time
 
 class Player:
     def __init__(self, window, num):
@@ -14,32 +15,47 @@ class Player:
         
     def playerMove(self, window):
         key = window.getKey()
+        #player_x = self.player.getAnchor().getX()
+        #player_y = self.player.getAnchor().getY()
         if key == 'Up':
             self.player.move(0, 15)
         elif key == 'Down':
             self.player.move(0, -15)
         elif key == 'Left':
             self.player.move(-15, 0)
-        elif key == 'Right':
+        elif key == 'Right':  
             self.player.move(15, 0)
-
+            
     def collectCoin(self, window):
-
         self.playerMove(window)
         playerCoords = self.player.getAnchor()
+        print(playerCoords)
 
-        if (playerCoords.getX() in self.coin.selectedX) and (playerCoords.getY() in self.coin.selectedY)
-        and (self.coin.selectedX.index(playerCoords.getX()) == self.coin.selectedY.index(playerCoords.getY())):
-            i = self.coin.selectedX.index(playerCoords.getX())
-            self.coin.selectedCoins[i].undraw()
-            self.count += 1
+        for p in self.coin.selectedPts:
+            pt_x = p.getX()
+            pt_y = p.getY()
+            if pt_x == playerCoords.getX() and pt_y == playerCoords.getY():
+                i = self.coin.selectedPts.index(p)
+                del self.coin.selectedPts[i]
+                
+                self.coin.selectedCoins[i].undraw()
+                del self.coin.selectedCoins[i]
+                
+                text = Text(Point(pt_x,pt_y+40),"+1")
+                text.setFill("coral")
+                text.setStyle("bold")
+                text.setSize(20)
+                text.draw(window)
+                time.sleep(0.2)
+                text.undraw()
+                self.count += 1
        
 def main():
     win = GraphWin('Player Test', 600, 600)
     win.setCoords(0, 0, 600, 600)
-    player = Player(win, 50)
+    player = Player(win, 10)
 
-    while player.count < 50:
+    while player.count < 10:
         player.collectCoin(win)
     
     win.getMouse()
@@ -47,4 +63,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
