@@ -15,8 +15,6 @@ class Player:
         
     def playerMove(self, window):
         key = window.getKey()
-        #player_x = self.player.getAnchor().getX()
-        #player_y = self.player.getAnchor().getY()
         if key == 'Up':
             self.player.move(0, 15)
         elif key == 'Down':
@@ -28,12 +26,15 @@ class Player:
             
     def collectCoin(self, window):
         self.playerMove(window)
-        playerCoords = self.player.getAnchor()
+        player_x = self.player.getAnchor().getX()
+        player_y = self.player.getAnchor().getY()
+        player_y1 = player_y + 15 #enlarge the area the fox covers
+        player_y2 = player_y - 15
 
         for p in self.coin.selectedPts:
             pt_x = p.getX()
             pt_y = p.getY()
-            if pt_x == playerCoords.getX() and pt_y == playerCoords.getY():
+            if pt_x == player_x and (pt_y == player_y or pt_y == player_y1 or pt_y == player_y2):
                 i = self.coin.selectedPts.index(p)
                 del self.coin.selectedPts[i]
                 
