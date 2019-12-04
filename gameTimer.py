@@ -8,7 +8,7 @@ class Timer:
         self.clockPos.draw(window)
         self.timeUp = False
         
-    def countdown(self, time, window):
+    def countdown(self, n, window):
         mins, secs = divmod(n, 60)
         self.clockPos.setText('{:02d}:{:02d}'.format(mins, secs))
         #print('{:02d}:{:02d}'.format(mins, secs), end = '\n')
