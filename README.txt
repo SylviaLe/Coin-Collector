@@ -39,11 +39,34 @@ Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstac
                     function: simulates coin collection, signaling successful intake of coins.
             
   + CoinCollector: INSTANCE VARIABLES:  
+                     player: an instance of Player class
+                     score: the player score, base on time required to finish collecting the coins
+                     isOver: boolean value. True if done collecting the coins, or hit the bomb (extra features)
                    METHODS: 
-                    
-  + Timer: INSTANCE VARIABLES:
-           METHODS:
+                     play: 
+                        parameters: window
+                        return values: none
+                        function: begin the game, let the player collect coins, start measuring time elapsed
+                     evalScore: 
+                        parameters: none
+                        return values: number of coins collected, player's score base on time
+                        function: calculate the stats of player's round
+                     gameOver: 
+                        parameters: none
+                        return: true of false
+                        function: indicate if the game has ended (#actually not neccessary now, but might need later w/ extra features)
   
+  + Timer: INSTANCE VARIABLES:
+               win: the window to draw the clock on
+               clockPos: the exact position to draw it
+               timeUp: boolean value, True if the clock reach 00:00
+           METHODS:
+               countdown:
+                  parameters: n, window
+                  return values: none
+                  function: countdown clock from n to 0, n is number of seconds.
+           NOTES:
+               This class is under re-consideration, as it's doing what we want it to
   
 - Pseudocode for main function:
          1. Create a main menu with buttons where user can navigate (i.e. 'Start','Rules','Exit'...)
