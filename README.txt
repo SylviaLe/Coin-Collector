@@ -1,11 +1,13 @@
 PROBLEM SPECIFICATION AND DESIGN DOCUMENT
 
 - This project creates a game called 'Coin Collector'
-In this game, user can use the up, down, left, or right key to move a character on the screen, to get the coins that is generated randomly on the window. There will be a countdown clock, the user must get as many coins as possible before the time runs out. Sounds and levels of difficulty (i.e. Easy/Medium/Hard) will also be added to the game.   
+In this game, user can use the up, down, left, or right key to move a character on the screen, to get the coins that is generated randomly on the window. There will be a countdown clock, the user must get as many coins as possible before the time runs out. Other features: sounds and levels of difficulty (i.e. Easy/Medium/Hard). 
+
+Note: In the document below, 'player' and 'character' are sometimes used interchangably.
 
 - Classes and methods:
-  + Timer:INSTANCE VARIABLES:
-          METHODS:
+  + Timer: INSTANCE VARIABLES:
+           METHODS:
           
   + Coin: INSTANCE VARIABLES: 
               num: number of coins generated on the window
@@ -15,28 +17,29 @@ In this game, user can use the up, down, left, or right key to move a character 
           METHODS:
               createCoin
                   parameters: window
-                  return value(s: none
-                  function: randomly generate a specified number of coins on window and 
-                            add their coordinations to selectedPts and  selectedCoins lists
+                  return values: none
+                  function: randomly generates a specified number of coins on window and 
+                            appends their coords to selectedPts and  selectedCoins lists
   
   + Player: INSTANCE VARIABLES:
-                coinNum:
-                coin:
-                playerImg:
-                iniPos:
-                player:
-                count:
+                coinNum: number of coins to generate 
+                coin: a Coin object, generating coins on window
+                playerImg: an image file (.png or .gif) of player
+                iniPos: coords where player first stands, a Point object
+                player: an Image object representing player
+                count: a variable to keep track of coins which are already collected
             METHODS: 
                 playerMove
-                    parameters: 
-                    return values:
-                    function:
+                    parameters: window
+                    return values: none
+                    function: checks for key inputs (up,down,left,or right) and move character accordingly
                 collectCoin
-                    parameters:
-                    return values:
-                    function:
+                    parameters: window
+                    return values: none
+                    function: simulates coin collection, signaling successful intake of coins.
             
   + CoinCollector:  INSTANCE VARIABLES:
+                        
                     METHODS: 
   
 
