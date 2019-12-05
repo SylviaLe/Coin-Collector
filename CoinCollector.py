@@ -1,24 +1,27 @@
 from player import *
 from coin import *
-from gameTimer import *
 from graphics import *
-
+import time
 
 class CoinCollector:
     def __init__(self, window):
-        self.clock = Timer(window, Point(20, 580))
         self.player = Player(window, 50)
+        self.score = 0
+        self.isOver = False
         
     def play(self, window):
-        self.clock.countdown(10, window)
-
-        while not self.clock.timeUp():
+        start = time.time()
+        while self.player.count != 10:
             self.player.collectCoin(window)
+        end = time.time()
+        self.score = end - start
         
     def evalScore(self):
-        return self.player.count
+        return (self.player.count, round(self.score *10))
         
-    #def gameOver():
+    def gameOver(self):
+        if self.isOver == True:
+            return True
 
 def main():
     win = GraphWin('Test', 600, 600)
