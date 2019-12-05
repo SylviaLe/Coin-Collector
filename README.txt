@@ -45,7 +45,7 @@ Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstac
            METHODS:
   
   
-- Pseudo code for main function:
+- Pseudocode for main function:
          1. Create a main menu with buttons where user can navigate (i.e. 'Start','Rules','Exit'...)
          2. Game begins as soon as user clicks 'Start' button
          3. Create a new window 
