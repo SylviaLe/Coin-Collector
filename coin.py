@@ -5,8 +5,6 @@ class Coin():
     def __init__(self, num, window):
         self.num = num
         self.selectedPts = []
-        self.selectedX = []
-        self.selectedY = []
         self.selectedCoins = []
         self.coinImg = 'coin(1).png'
         self.createCoin(window)
@@ -20,8 +18,6 @@ class Coin():
                 x = randrange(15,786,15)
                 y = randrange(15,786,15)
                 pt = Point(x,y)
-            self.selectedX.append(x)
-            self.selectedY.append(y)
             self.selectedPts.append(pt)
             self.selectedCoins.append(Image(pt, self.coinImg).draw(window))
           
