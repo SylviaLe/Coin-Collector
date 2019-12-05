@@ -46,17 +46,16 @@ Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstac
   
   
 - Pseudo code for main function:
-
-1. Create a main menu with buttons where user can navigate (i.e. 'Start','Rules','Exit'...)
-2. Game begins as soon as user clicks 'Start' button
-3. Create a new window 
-4. Create a Player class
-5. Create a Timer class
-6. Print stuffs like 'Ready', 'Go'
-7. Print out results
-  - User loses if time-out or she/he steps on explosives/cats/holes
-  - User wins: if she/he collects all coins before time-out
-8. Available options after game ends: Restart or Exit  
+         1. Create a main menu with buttons where user can navigate (i.e. 'Start','Rules','Exit'...)
+         2. Game begins as soon as user clicks 'Start' button
+         3. Create a new window 
+         4. Create a Player class
+         5. Create a Timer class
+         6. Print stuffs like 'Ready', 'Go'
+         7. Print out results
+           - User loses if time-out or she/he steps on explosives/cats/holes
+           - User wins: if she/he collects all coins before time-out
+         8. Available options after game ends: Restart or Exit  
 
 
 
