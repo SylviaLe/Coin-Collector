@@ -2,9 +2,9 @@ PROBLEM SPECIFICATION AND DESIGN DOCUMENT
 
 - Program description:
 This project creates a game called 'Coin Collector'. 
-In this game, user can use the up, down, left, or right key to move a character on the screen, to get the coins that is generated randomly on the window. 
-There will be a countdown clock, the user must get as many coins as possible before time runs out. 
-Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstacles (i.e. explosives, cats, potholes) that decreases user's chance of winning.
+How to play: use 'up', 'down', 'left', or 'right' key to move the character around to collect coins, which are randomly generated.
+There will be a countdown clock, so user must get as many coins as possible before time runs out. 
+Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstacles (i.e. explosives, cats, potholes)
 
 *** Note: In the document below, 'player' and 'character' are sometimes used interchangably.
 
