@@ -6,7 +6,7 @@ In this game, user can use the up, down, left, or right key to move a character 
 There will be a countdown clock, the user must get as many coins as possible before time runs out. 
 Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstacles (i.e. explosives, cats, potholes) that decreases user's chance of winning.
 
-***Note: In the document below, 'player' and 'character' are sometimes used interchangably.
+*** Note: In the document below, 'player' and 'character' are sometimes used interchangably.
 
 - Classes and methods:
    + Coin: INSTANCE VARIABLES: 
