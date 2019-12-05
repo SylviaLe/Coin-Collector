@@ -20,8 +20,15 @@ In this game, user can use the up, down, left, or right key to move a character 
                           add their coordinations to selectedPts and  selectedCoins lists
   
   + Player: INSTANCE VARIABLES:
-                
+                coinNum:
+                coin:
+                playerImg:
+                iniPos:
+                player:
+                count:
             METHODS: 
+                playerMove
+                collectCoin:
             
   + CoinCollector:  INSTANCE VARIABLES:
                     METHODS: 
