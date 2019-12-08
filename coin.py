@@ -10,13 +10,13 @@ class Coin():
         self.createCoin(window)
 
     def createCoin(self, window):
-        for i in range(self.num):
-            x = randrange(15,586,15)
-            y = randrange(15,586,15)
+       for i in range(self.num):
+            x = randrange(30,571,15)
+            y = randrange(30,571,15)
             pt = Point(x,y)
             while pt in self.selectedPts:
-                x = randrange(15,786,15)
-                y = randrange(15,786,15)
+                x = randrange(15,571,15)
+                y = randrange(15,571,15)
                 pt = Point(x,y)
             self.selectedPts.append(pt)
             self.selectedCoins.append(Image(pt, self.coinImg).draw(window))
