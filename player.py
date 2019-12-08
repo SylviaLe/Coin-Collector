@@ -62,7 +62,7 @@ def main():
     win = GraphWin('Player Test', 600, 600)
     win.setCoords(0, 0, 600, 600)
     theme = Image(Point(300,300),"grass.png").draw(win)
-    player = Player(win, 10)
+    coinNumber = 10
     
     # play the music file indefinitely
     # the -1 signals pygame to play forever
@@ -70,7 +70,11 @@ def main():
     pygame.mixer.music.load("Jazzapation.wav")
     pygame.mixer.music.play(-1)
 
-    while player.count < 10:
+    #create a Player object 
+    player = Player(win, coinNumber)
+
+    #a loop to keep track of collected coins
+    while player.count < coinNumber:
         player.collectCoin(win)
     
     win.getMouse()
