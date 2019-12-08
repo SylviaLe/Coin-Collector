@@ -1,6 +1,6 @@
 from graphics import *
 from coin import *
-import simpleaudio as sa
+import pygame
 import time
 
 class Player:
@@ -13,6 +13,7 @@ class Player:
         self.player = Image(self.iniPos, self.playerImg)
         self.player.draw(window)
         self.count = 0
+        self.coin_sound = pygame.mixer.Sound("collectCoin.wav")
         
     def playerMove(self, window):
         key = window.getKey()
@@ -46,8 +47,8 @@ class Player:
                 del self.coin.selectedCoins[i]
                 
                 #play coin sound
-                sa.WaveObject.from_wave_file('collectCoin.wav').play()
-          
+                pygame.mixer.Sound.play(self.coin_sound)
+                #+1
                 text = Text(Point(pt_x,pt_y+40),"+1")
                 text.setFill("coral")
                 text.setStyle("bold")
@@ -62,6 +63,12 @@ def main():
     win.setCoords(0, 0, 600, 600)
     theme = Image(Point(300,300),"grass.png").draw(win)
     player = Player(win, 10)
+    
+    # play the music file indefinitely
+    # the -1 signals pygame to play forever
+    pygame.init()
+    pygame.mixer.music.load("Jazzapation.wav")
+    pygame.mixer.music.play(-1)
 
     while player.count < 10:
         player.collectCoin(win)
