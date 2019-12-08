@@ -1,5 +1,6 @@
 from graphics import *
 from coin import *
+import simpleaudio as sa
 import time
 
 class Player:
@@ -44,6 +45,9 @@ class Player:
                 self.coin.selectedCoins[i].undraw()
                 del self.coin.selectedCoins[i]
                 
+                #play coin sound
+                sa.WaveObject.from_wave_file('collectCoin.wav').play()
+          
                 text = Text(Point(pt_x,pt_y+40),"+1")
                 text.setFill("coral")
                 text.setStyle("bold")
