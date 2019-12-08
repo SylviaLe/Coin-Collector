@@ -53,6 +53,7 @@ class Player:
 def main():
     win = GraphWin('Player Test', 600, 600)
     win.setCoords(0, 0, 600, 600)
+    theme = Image(Point(300,300),"grass.png").draw(win)
     player = Player(win, 10)
 
     while player.count < 10:
