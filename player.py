@@ -15,13 +15,16 @@ class Player:
         
     def playerMove(self, window):
         key = window.getKey()
-        if key == 'Up':
+        player_x = self.player.getAnchor().getX()
+        player_y = self.player.getAnchor().getY()
+
+        if key == 'Up'and player_y + 15 <= 570:
             self.player.move(0, 15)
-        elif key == 'Down':
+        elif key == 'Down' and player_y - 15 >= 30:
             self.player.move(0, -15)
-        elif key == 'Left':
+        elif key == 'Left' and player_x - 15 >= 30:
             self.player.move(-15, 0)
-        elif key == 'Right':  
+        elif key == 'Right' and player_x + 15 <= 570:  
             self.player.move(15, 0)
             
     def collectCoin(self, window):
