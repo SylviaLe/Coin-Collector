@@ -5,6 +5,7 @@ This project creates a game called 'Coin Collector'.
 How to play: use 'up', 'down', 'left', or 'right' key to move the character around to collect coins, which are randomly generated.
 There will be a countdown clock, so user must get as many coins as possible before time runs out. 
 Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstacles (i.e. explosives, cats, potholes)
+Packages: pygame
 
 *** Note: In the document below, 'player' and 'character' are sometimes used interchangably.
 
