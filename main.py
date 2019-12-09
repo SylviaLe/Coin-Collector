@@ -71,7 +71,7 @@ def main():
     pygame.mixer.music.load("Jazzapation.wav")
     pygame.mixer.music.play(-1)
     
-    Player = Player(win, coinNumber)
+    player = Player(win, coinNumber)
     
     while player.count < coinNumber:
         player.collectCoin(win)
