@@ -4,14 +4,14 @@ from graphics import *
 import time
 
 class CoinCollector:
-    def __init__(self, window):
-        self.player = Player(window, 50)
+    def __init__(self, window, num):
+        self.player = Player(window, num)
         self.score = 0
         self.isOver = False
         
     def play(self, window):
         start = time.time()
-        while self.player.count != 10:
+        while self.player.count != num:
             self.player.collectCoin(window)
         end = time.time()
         self.score = end - start

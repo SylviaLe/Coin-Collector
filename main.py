@@ -3,12 +3,13 @@ from graphics import *
 from CoinCollector import *
 from player import *
 from button import *
+import time
 
 def intro():
-    intwin = GraphWin("Welcome to CoinCollector", 1000,600)
+    intwin = GraphWin("Welcome to CoinCollector", 600,600)
     intwin.setCoords(0,0,400,400)
     #Designs
-    background = Image(Point(200,200),"coin-collection.png")
+    background = Image(Point(200,200),"intro.png")
     background.draw(intwin)
 
     gamename = Text(Point(200,300), "Coin Collector")
@@ -63,11 +64,10 @@ def rules():
 
 
 def main():
-    def main():
     win = GraphWin('Player Test', 600, 600)
     win.setCoords(0, 0, 600, 600)
     theme = Image(Point(300,300),"grass.png").draw(win)
-    coinNumber = 10
+    coinNumber = 1
     
     # play the music file indefinitely
     # the -1 signals pygame to play forever
@@ -79,11 +79,33 @@ def main():
     player = Player(win, coinNumber)
 
     #a loop to keep track of collected coins
+    start = time.time()
     while player.count < coinNumber:
         player.collectCoin(win)
-    
-    win.getMouse()
-    win.close()
+    end = time.time()
+    score = round((end - start)*100)
+        
+    player.player.undraw()
+    resultBox = Rectangle(Point(200, 200), Point(450, 450))
+    resultBox.setFill('thistle1')
+    resultBox.setWidth(0.1)
+    resultBox.draw(win)
 
+    collected = Text(Point(300, 400), 'Coin collected: ' + str(coinNumber))
+    score = Text(Point(300, 375), 'Score: ' + str(score))
+    collected.draw(win)
+    score.draw(win)
+
+    Exit = Button(win, Point(250, 235), 60, 30, 'Exit')
+    restart = Button(win, Point(400, 235), 60, 30, 'Restart')
+
+    pt = win.getMouse()
+    while not Exit.isClicked(pt):
+        if restart.isClicked(pt):
+            win.close()
+            main()
+            break
+        pt = win.getMouse()
     
+    win.close()
 intro()
