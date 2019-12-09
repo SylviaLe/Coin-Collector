@@ -58,27 +58,6 @@ class Player:
                 text.undraw()
                 self.count += 1
        
-def main():
-    win = GraphWin('Player Test', 600, 600)
-    win.setCoords(0, 0, 600, 600)
-    theme = Image(Point(300,300),"grass.png").draw(win)
-    coinNumber = 10
-    
-    # play the music file indefinitely
-    # the -1 signals pygame to play forever
-    pygame.init()
-    pygame.mixer.music.load("Jazzapation.wav")
-    pygame.mixer.music.play(-1)
-
-    #create a Player object 
-    player = Player(win, coinNumber)
-
-    #a loop to keep track of collected coins
-    while player.count < coinNumber:
-        player.collectCoin(win)
-    
-    win.getMouse()
-    win.close()
 
 if __name__ == '__main__':
     main()
