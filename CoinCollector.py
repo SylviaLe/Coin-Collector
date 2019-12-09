@@ -23,17 +23,6 @@ class CoinCollector:
         if self.isOver == True:
             return True
 
-def main():
-    win = GraphWin('Test', 600, 600)
-    win.setCoords(0, 0, 600, 600)
 
-    game = CoinCollector(win)
-    game.play(win)
-    print(game.evalScore())
-
-    win.getMouse()
-    win.close()
-
-main()
         
     
