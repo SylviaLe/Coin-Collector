@@ -13,7 +13,7 @@ class Coin():
         #generate obstacles
         self.selectedPts2 = []
         self.selectedObstacles = []
-        self.obstacleImg = ["fish.png","tnt.png"]
+        self.obstacleImg = ["fish.png","tnt.png","bomb.png"]
         self.createObstacle(window)
 
     def createCoin(self, window):
