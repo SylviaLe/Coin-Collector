@@ -63,23 +63,6 @@ def rules():
 
 
 def main():
-    win = GraphWin("CoinCollector", 600,600)
-    theme = Image(Point(300,300),"grass.png").draw(win)
-    coinNumber = 20
-    
-    pygame.init()
-    pygame.mixer.music.load("Jazzapation.wav")
-    pygame.mixer.music.play(-1)
-    
-    player = Player(win, coinNumber)
-    
-    while player.count < coinNumber:
-        player.collectCoin(win)
-        
-    win.getMouse()
-    win.close()
-    #Randomly draw bush
-    game = CoinCollector(win)
-    game.play(win)
+    print("Nothing here")
     
 intro()
