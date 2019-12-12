@@ -13,14 +13,16 @@ def intro():
     background.draw(intwin)
 
     gamename = Text(Point(200,300), "Coin Collector")
-    gamename.setSize(36)
-    gamename.setTextColor("red")
-    gamename.setFace("century")
+    gamename.setSize(40)
+    gamename.setTextColor(color_rgb(255, 240, 214))
+    gamename.setFace("calibri")
+    gamename.setStyle('bold')
     gamename.draw(intwin)
     
-    start = Button(intwin, Point(200,230),50,25,"Start")
-    Quit = Button(intwin, Point(200,170),50,25, "Quit")
-    rule = Button(intwin, Point(200,200), 50, 25, "Rules")
+    start = Button(intwin, Point(200,230),75,25,"Start")
+    rule = Button(intwin, Point(200,200), 75, 25, "Rules")
+    Quit = Button(intwin, Point(200,170),75,25, "Quit")
+    lead = Button(intwin, Point(200, 140), 75, 25, 'Leaderboard')
 
     pt = intwin.getMouse()
     while not Quit.isClicked(pt):
@@ -67,8 +69,31 @@ def main():
     win = GraphWin('Player Test', 600, 600)
     win.setCoords(0, 0, 600, 600)
     theme = Image(Point(300,300),"grass.png").draw(win)
-    coinNumber = 1
+
+    prompt = Text(Point(300, 340), 'Enter your name: ')
+    prompt.setFace('calibri')
+    prompt.setStyle('bold')
+    prompt.setSize(28)
+    prompt.setFill(color_rgb(255, 240, 214))
+    prompt.draw(win)
+
+    userInput = Entry(Point(300, 300), 15)
+    userInput.draw(win)
+
+    play = Button(win, Point(300, 265), 50, 25, 'Play!')
+    p = win.getMouse()
+    while not play.isClicked(p):
+        p = win.getMouse()
+
+    playerName = userInput.getText()
+    if playerName == '':
+        playerName = 'Player'
     
+    prompt.undraw()
+    userInput.undraw()
+    play.undraw()
+
+
     # play the music file indefinitely
     # the -1 signals pygame to play forever
     pygame.init()
@@ -76,6 +101,7 @@ def main():
     pygame.mixer.music.play(-1)
 
     #create a Player object 
+    coinNumber = 1
     player = Player(win, coinNumber)
 
     #a loop to keep track of collected coins
@@ -87,12 +113,23 @@ def main():
         
     player.player.undraw()
     resultBox = Rectangle(Point(200, 200), Point(450, 450))
-    resultBox.setFill('thistle1')
+    resultBox.setFill(color_rgb(115, 29, 78))
     resultBox.setWidth(0.1)
     resultBox.draw(win)
 
-    collected = Text(Point(300, 400), 'Coin collected: ' + str(coinNumber))
-    score = Text(Point(300, 375), 'Score: ' + str(score))
+    name = Text(Point(325, 360), 'Player: ' + str(playerName))
+    name.setSize(17)
+    name.setFill('white smoke')
+    name.setFace('quicksand')
+    collected = Text(Point(325, 335), 'Coin collected: ' + str(coinNumber))
+    collected.setSize(17)
+    collected.setFill('white smoke')
+    collected.setFace('quicksand')
+    score = Text(Point(325, 310), 'Score: ' + str(score))
+    score.setSize(17)
+    score.setFill('white smoke')
+    score.setFace('quicksand')
+    name.draw(win)
     collected.draw(win)
     score.draw(win)
 
