@@ -36,12 +36,13 @@ class Player:
         player_y1 = player_y + 15 #enlarge the area the fox covers
         player_y2 = player_y - 15
 
-        for p in self.coin.selectedPts:
+        #If collect coin
+        for p in self.coin.selectedPtsCoin:
             pt_x = p.getX()
             pt_y = p.getY()
             if pt_x == player_x and (pt_y == player_y or pt_y == player_y1 or pt_y == player_y2):
-                i = self.coin.selectedPts.index(p)
-                del self.coin.selectedPts[i]
+                i = self.coin.selectedPtsCoin.index(p)
+                del self.coin.selectedPtsCoin[i]
                 
                 self.coin.selectedCoins[i].undraw()
                 del self.coin.selectedCoins[i]
@@ -57,6 +58,44 @@ class Player:
                 time.sleep(0.2)
                 text.undraw()
                 self.count += 1
+                
+        #If collect other objects
+        #Bomb
+        for p in self.coin.selectedPtsBomb:
+            pt_x = p.getX()
+            pt_y = p.getY()
+            if pt_x == player_x and (pt_y == player_y or pt_y == player_y1 or pt_y == player_y2):
+                i = self.coin.selectedPtsBomb.index(p)
+                del self.coin.selectedPtsBomb[i]
+                
+                self.coin.selectedBombs[i].undraw()
+                del self.coin.selectedBombs[i]
+                
+                pygame.mixer.Sound.play(self.bomb_sound)
+            
+                exp = Image(Point(pt_x,pt_y+40),"explosion.png")
+                exp.draw(window)
+                time.sleep(0.5)
+                exp.undraw()
+        #Fish
+        for p in self.coin.selectedPtsFish:
+            pt_x = p.getX()
+            pt_y = p.getY()
+            if pt_x == player_x and (pt_y == player_y or pt_y == player_y1 or pt_y == player_y2):
+                i = self.coin.selectedPtsFish.index(p)
+                del self.coin.selectedPtsFish[i]
+                
+                self.coin.selectedFish[i].undraw()
+                del self.coin.selectedFish[i]
+                
+                pygame.mixer.Sound.play(self.fish_sound)
+            
+                exp = Image(Point(pt_x,pt_y+40),"stars.png")
+                exp.draw(window)
+                time.sleep(0.4)
+                exp.undraw()
+                
+         #TNT, still working on it, gotta take a bath
        
 
 if __name__ == '__main__':
