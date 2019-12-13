@@ -27,51 +27,50 @@ class Leaderboard:
             newBoard = sorted(self.board)
             with open(self.file, 'w') as file:
                 file.write(str(newBoard))
+
     #This method makes the leaderboard to appear on the graphics window
     def show(self, num, iniNamePos, iniScorePos, window):
         with open(self.file, 'r') as file: #open the file
             data = file.readlines()
-            show = eval(data[-1])
+            show = eval(data[-1])  #get the data that need to be shown
 
         space = 0
-        if len(self.board) < num:
+        if len(self.board) < num:  #if currentlt the board has less than 10 entries
             for i in range(len(self.board)):
-                for subList in show:
-                    name, score = subList[1], subList[0]
-                    showName = Text(Point(iniNamePos, 350 - space), name) #Screen size is 400x400
-                    showScore = Text(Point(iniScorePos, 350 - space), score)
+                name, score = self.board[i][1], self.board[i][0]  #for each sublist, get the name and score, and draw it
+                showName = Text(Point(iniNamePos, 305 - space), name) #Screen size is 400x400
+                showScore = Text(Point(iniScorePos, 305 - space), score)
 
-                    showName.setSize(12)
-                    showName.setFace('quicksand')
-                    showName.setFill('white smoke')
-                    showScore.setSize(12)
-                    showScore.setFace('quicksand')
-                    showScore.setFill('white smoke')
+                showName.setSize(12)
+                showName.setFace('quicksand')
+                showName.setFill('white smoke')
+                showScore.setSize(12)
+                showScore.setFace('quicksand')
+                showScore.setFill('white smoke')
+                
+                showName.draw(window)
+                showScore.draw(window)
 
-                    showName.draw(window)
-                    showScore.draw(window)
-
-                    space += 20
+                space += 20
         else:   
             for i in range(num):
-                for subList in show:
-                    name, score = subList[1], subList[0]
-                    showName = Text(Point(iniNamePos, 350 - space), name) #Screen size is 400x400. Better set iniNamePos 100, iniScorePos 300
-                    showScore = Text(Point(iniScorePos, 350 - space), score)
+                name, score = self.board[i][1], self.board[i][0]
+                showName = Text(Point(iniNamePos, 305 - space), name) #Screen size is 400x400. Better set iniNamePos 100, iniScorePos 300
+                showScore = Text(Point(iniScorePos, 305 - space), score)
 
-                    showName.setSize(12)
-                    showName.setFace('quicksand')
-                    showName.setFill('white smoke')
-                    showScore.setSize(12)
-                    showScore.setFace('quicksand')
-                    showScore.setFill('white smoke')
+                showName.setSize(12)
+                showName.setFace('quicksand')
+                showName.setFill('white smoke')
+                showScore.setSize(12)
+                showScore.setFace('quicksand')
+                showScore.setFill('white smoke')
 
-                    showName.draw(window)
-                    showScore.draw(window)
-
-                    space += 20
+                showName.draw(window)
+                showScore.draw(window)
+                
+                space += 20
                     
-def main():
+def main():  #just a testing ground
     win = GraphWin('Leaderboard Test', 400, 400)
     win.setCoords(0, 0, 400, 400)
     win.setBackground('black')

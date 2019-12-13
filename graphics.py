@@ -756,7 +756,7 @@ class Text(GraphicsObject):
         return self.anchor.clone()
 
     def setFace(self, face):
-        fonts = ['helvetica','arial','courier', 'quicksand','times roman', 'calibri', 'gotham', 'century', 'copperplace', 'consolas', 'garamond']
+        fonts = ['helvetica','arial','courier', 'quicksand','times roman', 'calibri', 'century', 'copperplace', 'consolas', 'garamond']
         #, 'alex brush', 'blackjack', 'courgette', 'freebooter-script','handlee', 'homemade-apple', 'kaushan-script', 'learning curve'
         if face in fonts:
             f,s,b = self.config['font']
