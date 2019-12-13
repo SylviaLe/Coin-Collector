@@ -1,6 +1,7 @@
 from graphics import *
 
 class Leaderboard:
+    """This class creates leaderboard, which will rank the players' score and compare them"""
     def __init__(self):
         self.file = 'leaderboard.txt'
         with open(self.file, 'r') as file: #open the file
@@ -8,7 +9,8 @@ class Leaderboard:
             self.board = eval(data[-1])  #cuz I cannot think of a short way to delete the previous session's data, here get the very last line of the file
             self.names = [self.board[i][1] for i in range(len(self.board))]
             #print(self.names)
-
+            
+    #This puts the player's name and score into the leaderboard
     def update(self, name, score):
         if name in self.names:  #if user already exist
             for sub_list in self.board:    
@@ -25,7 +27,7 @@ class Leaderboard:
             newBoard = sorted(self.board)
             with open(self.file, 'w') as file:
                 file.write(str(newBoard))
-
+    #This method makes the leaderboard to appear on the graphics window
     def show(self, num, iniNamePos, iniScorePos, window):
         with open(self.file, 'r') as file: #open the file
             data = file.readlines()
