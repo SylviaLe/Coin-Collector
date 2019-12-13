@@ -140,9 +140,11 @@ def main():
     while not Exit.isClicked(pt):
         if restart.isClicked(pt):
             win.close()
+            pygame.mixer.music.stop()
             main()
             break
         pt = win.getMouse()
     
     win.close()
+    pygame.mixer.music.stop()
 intro()
