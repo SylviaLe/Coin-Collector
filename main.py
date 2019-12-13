@@ -107,7 +107,7 @@ def main():
     #a loop to keep track of collected coins
     start = time.time()
     while player.count < coinNumber:
-        player.collectCoin(win)
+        player.playerCollect(win)
     end = time.time()
     score = round((end - start)*100)
         
