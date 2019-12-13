@@ -1,6 +1,5 @@
 from coin import *
 from graphics import *
-from CoinCollector import *
 from player import *
 from button import *
 import time
@@ -101,7 +100,7 @@ def main():
     pygame.mixer.music.play(-1)
 
     #create a Player object 
-    coinNumber = 1
+    coinNumber = 10
     player = Player(win, coinNumber)
 
     #a loop to keep track of collected coins
