@@ -4,6 +4,11 @@ import pygame
 import time
 
 class Player:
+    """This class draws the player, which is an image of a fox, and determines whether the player
+    gets the coin or runs into obstacles"""
+    
+    #Initializing player
+
     def __init__(self, window, num):
         self.coinNum = num
         self.coin = Coin(self.coinNum, window)
@@ -16,7 +21,8 @@ class Player:
         self.coin_sound = pygame.mixer.Sound("coinSound.wav")
         self.bomb_sound = pygame.mixer.Sound("bombSound.wav")
         self.fish_sound = pygame.mixer.Sound("fishSound.wav")
-        
+       
+    #How we are moving the fox
     def playerMove(self, window):
         key = window.getKey()
         player_x = self.player.getAnchor().getX()
@@ -31,12 +37,14 @@ class Player:
         elif key == 'Right' and player_x + 15 <= 570:  
             self.player.move(15, 0)
 
+    #Define whether we are getting coins or running into the obstacles       
     def effect(self,window,coords,objectList,imageList,sound,image,delayTime,isCoin):
         i = objectList.index(coords)
         del objectList[i]
         imageList[i].undraw()
         del imageList[i]
         pygame.mixer.Sound.play(sound)
+        
         if isCoin:
             text = Text(Point(coords[0],coords[1]+40),"+1")
             text.setFill("coral")
@@ -52,6 +60,7 @@ class Player:
             time.sleep(delayTime)
             exp.undraw()
             
+    #How big of a space the fox will cover     
     def playerCollect(self, window):
         self.playerMove(window)
         player_x = self.player.getAnchor().getX()
@@ -63,6 +72,7 @@ class Player:
         coords = (coords1 or coords2 or coords3)
 
         #(coords1 in self.coin.coinList) or (coords2 in self.coin.coinList) or (coords3 in self.coin.coinList)
+        
         if coords1 in self.coin.coinList:
             self.effect(window,coords1,self.coin.coinList,self.coin.selectedCoins,self.coin_sound,"coin(1).png",0.2,True)
         elif coords1 in self.coin.tntList:

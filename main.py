@@ -50,15 +50,28 @@ def leaderboard():
     proName.setFill('lemon chiffon')
     proName.draw(leadWin)
 
+    playCol = Text(Point(135, 360), 'Player')
+    scoreCol = Text(Point(265, 360), 'Score')
+    playCol.setStyle('bold')
+    playCol.setFace('helvetica')
+    playCol.setSize(18)
+    playCol.setFill('white smoke')
+    scoreCol.setStyle('bold')
+    scoreCol.setFace('helvetica')
+    scoreCol.setSize(18)
+    scoreCol.setFill('white smoke')
+    playCol.draw(win)
+    scoreCol.draw(win)
+
 ##    global board
 ##    board = Leaderboard()
-##    board.show(10, 135, 265, leadWin)
+##    board.show(8, 135, 265, leadWin)
 
 def rules():
     rulewin = GraphWin("CoinCollector Rules", 400,400)
     rulewin.setCoords(0,0,200,200)
     #Design
-    design = Image(Point(100,100), "rules background.png")
+    design = Image(Point(100,100), "rules.png")
     design.draw(rulewin)
 
     line1 = Text(Point(100,150),"- Use 'up', 'down', 'left', or 'right' key\nto move the character around to collect coins.")
