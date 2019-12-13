@@ -2,6 +2,7 @@ from coin import *
 from graphics import *
 from player import *
 from button import *
+from leaderboard import *
 import time
 
 def intro():
@@ -31,8 +32,27 @@ def intro():
             break
         elif rule.isClicked(pt):
             rules()
+        elif lead.isClicked(pt):
+            leaderboard()
         pt= intwin.getMouse()
     intwin.close()
+
+def leaderboard():
+    leadWin = GraphWin('Leaderboard', 400, 400)
+    leadWin.setCoords(0, 0, 400, 400)
+    theme = Image(Point(200, 200), 'lead.png')
+    theme.draw(leadWin)
+
+    proName = Text(Point(200, 370), 'Leaderboard')
+    proName.setStyle('bold')
+    proName.setFace('garamond')
+    proName.setSize(25)
+    proName.setFill('lemon chiffon')
+    proName.draw(leadWin)
+
+##    global board
+##    board = Leaderboard()
+##    board.show(10, 135, 265, leadWin)
 
 def rules():
     rulewin = GraphWin("CoinCollector Rules", 400,400)
@@ -111,10 +131,12 @@ def main():
     score = round((end - start)*100)
         
     player.player.undraw()
-    resultBox = Rectangle(Point(200, 200), Point(450, 450))
+    resultBox = Rectangle(Point(150, 150), Point(450, 450))
     resultBox.setFill(color_rgb(115, 29, 78))
     resultBox.setWidth(0.1)
     resultBox.draw(win)
+
+    board.update(playerName, score)
 
     name = Text(Point(325, 360), 'Player: ' + str(playerName))
     name.setSize(17)
@@ -132,12 +154,15 @@ def main():
     collected.draw(win)
     score.draw(win)
 
-    Exit = Button(win, Point(250, 235), 60, 30, 'Exit')
-    restart = Button(win, Point(400, 235), 60, 30, 'Restart')
+    restart = Button(win, Point(225, 165), 60, 30, 'Restart')
+    viewBoard = Button(win, Point(300, 165), 60, 30, 'Leaderboard')
+    Exit = Button(win, Point(375, 165), 60, 30, 'Exit')
 
     pt = win.getMouse()
     while not Exit.isClicked(pt):
-        if restart.isClicked(pt):
+        if viewBoard.isClicked(pt):
+            leaderboard()
+        elif restart.isClicked(pt):
             win.close()
             pygame.mixer.music.stop()
             main()

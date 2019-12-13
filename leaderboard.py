@@ -39,17 +39,17 @@ class Leaderboard:
                     showName = Text(Point(iniNamePos, 350 - space), name) #Screen size is 400x400
                     showScore = Text(Point(iniScorePos, 350 - space), score)
 
-                    showName.setSize(15)
+                    showName.setSize(12)
                     showName.setFace('quicksand')
                     showName.setFill('white smoke')
-                    showScore.setSize(15)
+                    showScore.setSize(12)
                     showScore.setFace('quicksand')
                     showScore.setFill('white smoke')
 
                     showName.draw(window)
                     showScore.draw(window)
 
-                    space += 30
+                    space += 20
         else:   
             for i in range(num):
                 for subList in show:
@@ -57,17 +57,17 @@ class Leaderboard:
                     showName = Text(Point(iniNamePos, 350 - space), name) #Screen size is 400x400. Better set iniNamePos 100, iniScorePos 300
                     showScore = Text(Point(iniScorePos, 350 - space), score)
 
-                    showName.setSize(15)
+                    showName.setSize(12)
                     showName.setFace('quicksand')
                     showName.setFill('white smoke')
-                    showScore.setSize(15)
+                    showScore.setSize(12)
                     showScore.setFace('quicksand')
                     showScore.setFill('white smoke')
 
                     showName.draw(window)
                     showScore.draw(window)
 
-                    space += 30
+                    space += 20
                     
 def main():
     win = GraphWin('Leaderboard Test', 400, 400)
