@@ -13,7 +13,9 @@ class Player:
         self.player = Image(self.iniPos, self.playerImg)
         self.player.draw(window)
         self.count = 0
-        self.coin_sound = pygame.mixer.Sound("collectCoin.wav")
+        self.coin_sound = pygame.mixer.Sound("coinSound.wav")
+        self.bomb_sound = pygame.mixer.Sound("bombSound.wav")
+        self.fish_sound = pygame.mixer.Sound("fishSound.wav")
         
     def playerMove(self, window):
         key = window.getKey()
