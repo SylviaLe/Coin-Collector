@@ -5,6 +5,8 @@ from button import *
 import time
 
 def intro():
+    #Introduction of our game
+    
     intwin = GraphWin("Welcome to CoinCollector", 600,600)
     intwin.setCoords(0,0,400,400)
     #Designs
@@ -18,6 +20,7 @@ def intro():
     gamename.setStyle('bold')
     gamename.draw(intwin)
     
+    #Buttons for users to choose what to do
     start = Button(intwin, Point(200,230),75,25,"Start")
     rule = Button(intwin, Point(200,200), 75, 25, "Rules")
     Quit = Button(intwin, Point(200,170),75,25, "Quit")
@@ -25,16 +28,17 @@ def intro():
 
     pt = intwin.getMouse()
     while not Quit.isClicked(pt):
-        if start.isClicked(pt):
+        if start.isClicked(pt): #Start the game
             intwin.close()
             main()
             break
-        elif rule.isClicked(pt):
+        elif rule.isClicked(pt): #pops up the rules for user
             rules()
         pt= intwin.getMouse()
-    intwin.close()
+    intwin.close() #end of intro
 
 def rules():
+    #Rules of our game in a separate window. Appears when user clicks rules.
     rulewin = GraphWin("CoinCollector Rules", 400,400)
     rulewin.setCoords(0,0,200,200)
     #Design
@@ -65,11 +69,12 @@ def rules():
 
 
 def main():
-    win = GraphWin('Player Test', 600, 600)
+    #Our game!
+    win = GraphWin('CoinCollerctor', 600, 600)
     win.setCoords(0, 0, 600, 600)
-    theme = Image(Point(300,300),"grass.png").draw(win)
+    theme = Image(Point(300,300),"grass.png").draw(win) #Our background
 
-    prompt = Text(Point(300, 340), 'Enter your name: ')
+    prompt = Text(Point(300, 340), 'Enter your name: ') #Asking for the player's name
     prompt.setFace('calibri')
     prompt.setStyle('bold')
     prompt.setSize(28)
@@ -96,11 +101,11 @@ def main():
     # play the music file indefinitely
     # the -1 signals pygame to play forever
     pygame.init()
-    pygame.mixer.music.load("Jazzapation.wav")
+    pygame.mixer.music.load("Jazzapation.wav") #Background music
     pygame.mixer.music.play(-1)
 
     #create a Player object 
-    coinNumber = 10
+    coinNumber = 10 #numbers of coins appearing on the screen
     player = Player(win, coinNumber)
 
     #a loop to keep track of collected coins
@@ -116,6 +121,7 @@ def main():
     resultBox.setWidth(0.1)
     resultBox.draw(win)
 
+    #Telling the user the result of his/her game
     name = Text(Point(325, 360), 'Player: ' + str(playerName))
     name.setSize(17)
     name.setFill('white smoke')
@@ -132,6 +138,7 @@ def main():
     collected.draw(win)
     score.draw(win)
 
+    
     Exit = Button(win, Point(250, 235), 60, 30, 'Exit')
     restart = Button(win, Point(400, 235), 60, 30, 'Restart')
 
