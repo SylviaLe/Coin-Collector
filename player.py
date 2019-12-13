@@ -30,75 +30,47 @@ class Player:
             self.player.move(-15, 0)
         elif key == 'Right' and player_x + 15 <= 570:  
             self.player.move(15, 0)
+
+    def effect(self,window,coords,objectList,imageList,sound,image,delayTime,isCoin):
+        i = objectList.index(coords)
+        del objectList[i]
+        imageList[i].undraw()
+        del imageList[i]
+        pygame.mixer.Sound.play(sound)
+        if isCoin:
+            text = Text(Point(coords[0],coords[1]+40),"+1")
+            text.setFill("coral")
+            text.setStyle("bold")
+            text.setSize(16)
+            text.draw(window)
+            time.sleep(delayTime)
+            text.undraw()
+            self.count += 1
+        else:
+            exp = Image(Point(coords[0],coords[1]+40),image)
+            exp.draw(window)
+            time.sleep(delayTime)
+            exp.undraw()
             
-    def collectCoin(self, window):
+    def playerCollect(self, window):
         self.playerMove(window)
         player_x = self.player.getAnchor().getX()
         player_y = self.player.getAnchor().getY()
-        player_y1 = player_y + 15 #enlarge the area the fox covers
-        player_y2 = player_y - 15
+        #enlarge the area the fox covers
+        coords1 = (player_x,player_y)
+        coords2 = (player_x,player_y + 15)
+        coords3 = (player_x,player_y - 15)
+        coords = (coords1 or coords2 or coords3)
 
-        #If collect coin
-        for p in self.coin.selectedPtsCoin:
-            pt_x = p.getX()
-            pt_y = p.getY()
-            if pt_x == player_x and (pt_y == player_y or pt_y == player_y1 or pt_y == player_y2):
-                i = self.coin.selectedPtsCoin.index(p)
-                del self.coin.selectedPtsCoin[i]
-                
-                self.coin.selectedCoins[i].undraw()
-                del self.coin.selectedCoins[i]
-                
-                #play coin sound
-                pygame.mixer.Sound.play(self.coin_sound)
-                #+1
-                text = Text(Point(pt_x,pt_y+40),"+1")
-                text.setFill("coral")
-                text.setStyle("bold")
-                text.setSize(16)
-                text.draw(window)
-                time.sleep(0.2)
-                text.undraw()
-                self.count += 1
-                
-        #If collect other objects
-        #Bomb
-        for p in self.coin.selectedPtsBomb:
-            pt_x = p.getX()
-            pt_y = p.getY()
-            if pt_x == player_x and (pt_y == player_y or pt_y == player_y1 or pt_y == player_y2):
-                i = self.coin.selectedPtsBomb.index(p)
-                del self.coin.selectedPtsBomb[i]
-                
-                self.coin.selectedBombs[i].undraw()
-                del self.coin.selectedBombs[i]
-                
-                pygame.mixer.Sound.play(self.bomb_sound)
-            
-                exp = Image(Point(pt_x,pt_y+40),"explosion.png")
-                exp.draw(window)
-                time.sleep(0.5)
-                exp.undraw()
-        #Fish
-        for p in self.coin.selectedPtsFish:
-            pt_x = p.getX()
-            pt_y = p.getY()
-            if pt_x == player_x and (pt_y == player_y or pt_y == player_y1 or pt_y == player_y2):
-                i = self.coin.selectedPtsFish.index(p)
-                del self.coin.selectedPtsFish[i]
-                
-                self.coin.selectedFish[i].undraw()
-                del self.coin.selectedFish[i]
-                
-                pygame.mixer.Sound.play(self.fish_sound)
-            
-                exp = Image(Point(pt_x,pt_y+40),"stars.png")
-                exp.draw(window)
-                time.sleep(0.4)
-                exp.undraw()
-                
-         #TNT, still working on it, gotta take a bath
-       
+        #(coords1 in self.coin.coinList) or (coords2 in self.coin.coinList) or (coords3 in self.coin.coinList)
+        if coords1 in self.coin.coinList:
+            self.effect(window,coords1,self.coin.coinList,self.coin.selectedCoins,self.coin_sound,"coin(1).png",0.2,True)
+        elif coords1 in self.coin.tntList:
+            self.effect(window,coords1,self.coin.tntList,self.coin.selectedTNT,self.bomb_sound,"explosion.png",0.5,False)
+        elif coords1 in self.coin.bombList:
+            self.effect(window,coords1,self.coin.bombList,self.coin.selectedBombs,self.bomb_sound,"explosion.png",0.5,False)
+        elif coords1 in self.coin.fishList:
+            self.effect(window,coords1,self.coin.fishList,self.coin.selectedFish,self.fish_sound,"stars.png",0.4,False)
 
 if __name__ == '__main__':
     main()
