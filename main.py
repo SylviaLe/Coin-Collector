@@ -106,7 +106,7 @@ def main():
     #a loop to keep track of collected coins
     start = time.time()
     while player.count < coinNumber:
-        player.collectCoin(win)
+        player.playerCollect(win)
     end = time.time()
     score = round((end - start)*100)
         
@@ -139,9 +139,11 @@ def main():
     while not Exit.isClicked(pt):
         if restart.isClicked(pt):
             win.close()
+            pygame.mixer.music.stop()
             main()
             break
         pt = win.getMouse()
     
     win.close()
+    pygame.mixer.music.stop()
 intro()

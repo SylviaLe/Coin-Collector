@@ -10,24 +10,34 @@ class Coin():
         #create coins
         self.selectedPtsCoin = []
         self.selectedCoins = []
-        self.create(1,window,self.selectedPtsCoin,self.selectedCoins,0)
+        self.coinDict = {}
+        self.create(1,window,self.selectedPtsCoin,self.selectedCoins,self.coinDict,0)
         
         #create tnt
         self.selectedPtsTNT = []
-        self.selectedTNT = []      
-        self.create(6,window,self.selectedPtsTNT,self.selectedTNT,1)
+        self.selectedTNT = []
+        self.tntDict = {}
+        self.create(6,window,self.selectedPtsTNT,self.selectedTNT,self.tntDict,1)
         
         #create bombs
         self.selectedPtsBomb = []
         self.selectedBombs = []
-        self.create(5,window,self.selectedPtsBomb,self.selectedBombs,2)
+        self.bombDict = {}
+        self.create(5,window,self.selectedPtsBomb,self.selectedBombs,self.bombDict,2)
         
         #create fishes
         self.selectedPtsFish = []
         self.selectedFish = []
-        self.create(5,window,self.selectedPtsFish,self.selectedFish,3)
+        self.fishDict = {}
+        self.create(5,window,self.selectedPtsFish,self.selectedFish,self.fishDict,3)
 
-    def create(self,ratio,window,list1,list2,index):
+        #convert dictionaries to lists for later use
+        self.coinList = list(self.coinDict.values())
+        self.tntList = list(self.tntDict.values())
+        self.bombList = list(self.bombDict.values())
+        self.fishList = list(self.fishDict.values())
+
+    def create(self,ratio,window,list1,list2,dictionary,index):
         length = self.num//ratio
         for i in range(length):
             x = randrange(30,571,15)
@@ -40,12 +50,12 @@ class Coin():
             self.selectedPts.append(pt)
             list1.append(pt)
             list2.append(Image(pt,self.Img[index]).draw(window))
-          
+            dictionary[i] = (x,y)
+        
 def main():
     win = GraphWin('Coin Test', 600, 600)
     win.setCoords(0, 0, 600, 600)
-    coin = Coin(20, win)
-
+    coin = Coin(10, win)  
     win.getMouse()
     win.close()
 
