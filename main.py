@@ -15,7 +15,7 @@ def intro():
     background.draw(intwin)
 
     gamename = Text(Point(200,300), "Coin Collector")
-    gamename.setSize(40)
+    gamename.setSize(45)
     gamename.setTextColor(color_rgb(255, 240, 214))
     gamename.setFace("quicksand")
     gamename.setStyle('bold')
@@ -247,7 +247,7 @@ def main(coinNum):
         elif restart.isClicked(pt):
             win.close()
             pygame.mixer.music.stop() #game end. Buh bye!
-            main()
+            main(coinNum)
             break
         pt = win.getMouse()
     
