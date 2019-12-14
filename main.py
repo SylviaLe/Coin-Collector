@@ -21,10 +21,9 @@ def intro():
     gamename.setStyle('bold')
     gamename.draw(intwin)
 
-    bigFox = Image(Point(90,190),"bigFox.png").draw(intwin)
-    bigCoin = Image(Point(280,200),"bigCoin.png").draw(intwin)
-    bigCoin = Image(Point(365,179),"bigCoin.png").draw(intwin)
-    bigCoin = Image(Point(310,156),"bigCoin.png").draw(intwin)
+    bigFox = Image(Point(330,100),"fox.png").draw(intwin)
+    coin1 = Image(Point(60, 295), 'spinCoin.gif').draw(intwin)
+    coin2 = Image(Point(340, 295), 'spinCoin.gif').draw(intwin)
     
     #Buttons for users to choose what to do
     start = Button(intwin, Point(200,230),75,25,"Start")
@@ -35,7 +34,9 @@ def intro():
     #Levels of difficulty prompt screen
     box = Rectangle(Point(100,260),Point(300,100))
     box.setFill(color_rgb(49, 77, 14))
-    level = Text(Point(200,245),"Choose your level of difficulty")
+    box.setWidth(0.05)
+    level = Text(Point(200,240),"Choose your level of difficulty:")
+    level.setSize(13)
     level.setFill(color_rgb(255, 240, 214))
     level.setStyle("italic")
     
@@ -49,18 +50,18 @@ def intro():
             # Prompt user to choose level of difficulty before starting game
             box.draw(intwin)
             level.draw(intwin)
-            easy = Button(intwin, Point(200,220),75,25,"Easy")
-            med = Button(intwin, Point(200,180),75,25,"Medium")
-            hard = Button(intwin, Point(200,140),75,25,"Hard")
+            easy = Button(intwin, Point(200,210),75,25,"Easy")
+            med = Button(intwin, Point(200,170),75,25,"Medium")
+            hard = Button(intwin, Point(200,130),75,25,"Hard")
             pt = intwin.getMouse()
             while not (easy.isClicked(pt) or med.isClicked(pt) or hard.isClicked(pt)):
                 pt = intwin.getMouse()
             if easy.isClicked(pt):
-                coinNum = 10
+                coinNum = 20  #20
             elif med.isClicked(pt):
-                coinNum = 20
+                coinNum = 40
             elif hard.isClicked(pt):
-                coinNum = 50
+                coinNum = 75
             #Start the game
             intwin.close()
             main(coinNum)
@@ -98,48 +99,48 @@ def leaderboard():
     playCol.draw(leadWin)
     scoreCol.draw(leadWin)
 
-    board.show(8, 135, 265, leadWin)
+    board.show(15, 135, 265, leadWin)
 
 def rules():
     #Rules of our game in a separate window. Appears when user clicks rules.
-    rulewin = GraphWin("CoinCollector Rules", 400,400)
+    rulewin = GraphWin("CoinCollector Rules", 410,410)
     rulewin.setCoords(0,0,200,200)
     #Design
     design = Image(Point(100,100), "rules.png")
     design.draw(rulewin)
 
-    title = Text(Point(100,175), "Rules")
+    title = Text(Point(100,180), "Rules")
     title.setSize(32)
     title.setTextColor(color_rgb(240, 255, 255))
     title.setFace('quicksand')
     title.setStyle('bold')
     title.draw(rulewin)
 
-    line1 = Text(Point(100,140),"- Try to collect all the coins with the shortest time.\nYour score will be determined by it.")
+    line1 = Text(Point(100,147),"- Try to collect all the coins with the shortest time.\nYour score will be determined by it.")
     line1.setSize(14)
     line1.setFace("calibri")
     line1.setFill('ghost white')
     line1.draw(rulewin)
     
-    line2 = Text(Point(100,110),"- Use 'up', 'down', 'left', or 'right' key\nto move the character.")
+    line2 = Text(Point(100,117),"- Use 'up', 'down', 'left', or 'right' key\nto move the character.")
     line2.setSize(14)
     line2.setFace("calibri")
     line2.setFill('ghost white')
     line2.draw(rulewin)
     
-    line3 = Text(Point(100,70),"- Don't hit the obstacles, they will slow you down.\nFish bones: make you dizzy and take long to get over\nBombs: will take longer to diffuse")
+    line3 = Text(Point(100,80),"- Don't hit the obstacles, they will slow you down.\nFish bones: make you dizzy and take long to get over\nBombs: will take longer to diffuse")
     line3.setSize(14)
     line3.setFace("calibri")
     line3.setFill('ghost white')
     line3.draw(rulewin)
 
-    line4 = Text(Point(100,40),"Warning! You will lose all score by collecting TNT explosives!")
+    line4 = Text(Point(100,50),"- Warning! Game Over if you hit TNT explosives!")
     line4.setSize(14)
     line4.setFace("calibri")
     line4.setFill('gold')
     line4.draw(rulewin)
 
-    line5 = Text(Point(100,20),"- See the leaderboard, try to beat other players.")
+    line5 = Text(Point(100,30),"- See the leaderboard, try to beat other players.")
     line5.setSize(14)
     line5.setFace("calibri")
     line5.setFill('ghost white')
@@ -168,19 +169,12 @@ def main(coinNum):
 
     playerName = userInput.getText()
     if playerName == '':
-        playerName = 'Guest'   #set the default to Player if the user didnt type anything
+        playerName = 'Guest'   #set the default to Guest if the user didnt type anything
     
     prompt.undraw()
     userInput.undraw()
     play.undraw()
 
-    # result to print out when game ends
-    result = Text(Point(300,300),"")
-    result.setSize(60)
-    result.setFill("white")
-    result.setFace("courier")
-    result.setStyle("bold italic")
-    result.draw(win)
     # play the music file indefinitely
     # the -1 signals pygame to play forever
     pygame.init()
@@ -197,34 +191,38 @@ def main(coinNum):
     while player.count < coinNumber and (not player.gameOver):
         player.playerCollect(win)
     if player.count >= coinNumber:
-        result.setText("Mission Completed!")
-        time.sleep(0.8)
-        result.undraw()
         end = time.time()
-        score = round((end - start)*100)
+        fire2 = Image(Point(200, 300), 'fireworks1.png').draw(win)
+        fire3 = Image(Point(400, 300), 'fireworks2.png').draw(win)
+        fire1 = Image(Point(300, 300), 'fireworks3.gif').draw(win)
+        result = Image(Point(300, 300), 'missionComplete.png').draw(win)
+        time.sleep(1)
+        fire2.undraw()
+        fire3.undraw()
+        fire1.undraw()
+        result.undraw()
+        score = round((end - start)*30 + int(player.count) * 50)
     else:
-        result.setText("Game Over")
-        time.sleep(0.8)
-        result.undraw()
         end = time.time()
-        score = 0
+        result = Image(Point(300, 300), 'gameOver.png').draw(win)
+        time.sleep(1)
+        result.undraw()
+        score = 9999999
 
-    coinNumber = player.count        
+    board.update(playerName, score)
         
     player.player.undraw()
     resultBox = Rectangle(Point(150, 150), Point(450, 450))
     resultBox.setFill(color_rgb(115, 29, 78))
-    resultBox.setWidth(0.1)
+    resultBox.setWidth(0.05)
     resultBox.draw(win)
-
-    board.update(playerName, score)
 
     #tell the user the result
     name = Text(Point(300, 336), 'Player: ' + str(playerName))
     name.setSize(17)
     name.setFill('white smoke')
     name.setFace('quicksand')
-    collected = Text(Point(300, 300), 'Coin collected: ' + str(coinNumber))
+    collected = Text(Point(300, 300), 'Coin collected: ' + str(player.count))
     collected.setSize(17)
     collected.setFill('white smoke')
     collected.setFace('quicksand')

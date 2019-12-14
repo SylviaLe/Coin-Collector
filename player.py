@@ -22,6 +22,7 @@ class Player:
         self.tnt_sound = pygame.mixer.Sound("tntSound.wav")
         self.bomb_sound = pygame.mixer.Sound("bombSound.wav")
         self.fish_sound = pygame.mixer.Sound("fishSound.wav")
+        self.gameOver = False
        
     #How we are moving the fox
     def playerMove(self, window):
@@ -88,6 +89,7 @@ class Player:
                     self.effect(window,c,self.coin.coinList,self.coin.selectedCoins,self.coin_sound,"coin(1).png",0.2,True)
                 elif l == self.coin.tntList:
                     self.effect(window,c,self.coin.tntList,self.coin.selectedTNT,self.tnt_sound,"tnt_explosion.png",0.5,False)
+                    self.gameOver = True
                 elif l == self.coin.bombList:
                     self.effect(window,c,self.coin.bombList,self.coin.selectedBombs,self.bomb_sound,"explosion.png",0.5,False)
                 else:
