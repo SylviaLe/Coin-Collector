@@ -21,20 +21,49 @@ def intro():
     gamename.setStyle('bold')
     gamename.draw(intwin)
 
+    bigFox = Image(Point(90,190),"bigFox.png").draw(intwin)
+    bigCoin = Image(Point(280,200),"bigCoin.png").draw(intwin)
+    bigCoin = Image(Point(365,179),"bigCoin.png").draw(intwin)
+    bigCoin = Image(Point(310,156),"bigCoin.png").draw(intwin)
+    
     #Buttons for users to choose what to do
     start = Button(intwin, Point(200,230),75,25,"Start")
     rule = Button(intwin, Point(200,200), 75, 25, "Rules")
     Quit = Button(intwin, Point(200,140),75,25, "Quit")
     lead = Button(intwin, Point(200, 170), 75, 25, 'Leaderboard')
 
+    #Levels of difficulty prompt screen
+    box = Rectangle(Point(100,260),Point(300,100))
+    box.setFill(color_rgb(49, 77, 14))
+    level = Text(Point(200,245),"Choose your level of difficulty")
+    level.setFill(color_rgb(255, 240, 214))
+    level.setStyle("italic")
+    
     global board
     board = Leaderboard()
 
+    coinNum = 0
     pt = intwin.getMouse()
     while not Quit.isClicked(pt):
-        if start.isClicked(pt): #Start the game
+        if start.isClicked(pt): 
+            # Prompt user to choose level of difficulty before starting game
+            box.draw(intwin)
+            level.draw(intwin)
+            easy = Button(intwin, Point(200,220),75,25,"Easy")
+            med = Button(intwin, Point(200,180),75,25,"Medium")
+            hard = Button(intwin, Point(200,140),75,25,"Hard")
+            pt = intwin.getMouse()
+            while not (easy.isClicked(pt) or med.isClicked(pt) or hard.isClicked(pt)):
+                pt = intwin.getMouse()
+            if easy.isClicked(pt):
+                coinNum = 10
+            elif med.isClicked(pt):
+                coinNum = 20
+            elif hard.isClicked(pt):
+                coinNum = 50
+            #Start the game
             intwin.close()
-            main()
+            main(coinNum)
             break
         elif rule.isClicked(pt):  #pop up the rules for user
             rules()
@@ -98,20 +127,27 @@ def rules():
     line2.setFill('ghost white')
     line2.draw(rulewin)
     
-    line3 = Text(Point(100,90),"- Don't hit the obstacles, they will slow you down.")
+    line3 = Text(Point(100,70),"- Don't hit the obstacles, they will slow you down.\nFish bones: make you dizzy and take long to get over\nBombs: will take longer to diffuse")
     line3.setSize(14)
     line3.setFace("calibri")
     line3.setFill('ghost white')
     line3.draw(rulewin)
 
-    line4 = Text(Point(100,70),"- See the leaderboard, try to beat other players")
+    line4 = Text(Point(100,40),"Warning! You will lose all score by collecting TNT explosives!")
     line4.setSize(14)
     line4.setFace("calibri")
-    line4.setFill('ghost white')
+    line4.setFill('gold')
     line4.draw(rulewin)
 
-def main():
-    win = GraphWin('Player Test', 600, 600)
+    line5 = Text(Point(100,20),"- See the leaderboard, try to beat other players.")
+    line5.setSize(14)
+    line5.setFace("calibri")
+    line5.setFill('ghost white')
+    line5.draw(rulewin)
+
+    
+def main(coinNum):
+    win = GraphWin('Coin Collector', 600, 600)
     win.setCoords(0, 0, 600, 600)
     theme = Image(Point(300,300),"grass.png").draw(win)  #the background
 
@@ -132,12 +168,19 @@ def main():
 
     playerName = userInput.getText()
     if playerName == '':
-        playerName = 'Player'   #set the default to Player if the user didnt type anything
+        playerName = 'Guest'   #set the default to Player if the user didnt type anything
     
     prompt.undraw()
     userInput.undraw()
     play.undraw()
 
+    # result to print out when game ends
+    result = Text(Point(300,300),"")
+    result.setSize(60)
+    result.setFill("white")
+    result.setFace("courier")
+    result.setStyle("bold italic")
+    result.draw(win)
     # play the music file indefinitely
     # the -1 signals pygame to play forever
     pygame.init()
@@ -145,15 +188,28 @@ def main():
     pygame.mixer.music.play(-1)
 
     #create a Player object 
-    coinNumber = 10  #number of object on the screen
+    coinNumber = coinNum  #number of object on the screen
     player = Player(win, coinNumber)
 
     #a loop to keep track of collected coins
     start = time.time()
-    while player.count < coinNumber:
+    #print(player.coin.coinList)
+    while player.count < coinNumber and (not player.gameOver):
         player.playerCollect(win)
-    end = time.time()
-    score = round((end - start)*100)
+    if player.count >= coinNumber:
+        result.setText("Mission Completed!")
+        time.sleep(0.8)
+        result.undraw()
+        end = time.time()
+        score = round((end - start)*100)
+    else:
+        result.setText("Game Over")
+        time.sleep(0.8)
+        result.undraw()
+        end = time.time()
+        score = 0
+
+    coinNumber = player.count        
         
     player.player.undraw()
     resultBox = Rectangle(Point(150, 150), Point(450, 450))
@@ -188,10 +244,10 @@ def main():
     pt = win.getMouse()
     while not Exit.isClicked(pt):
         if viewBoard.isClicked(pt):
-            leaderboard()   #pop the leaderboard again if the user clicks
+            leaderboard() #pop the leaderboard again if the user clicks
         elif restart.isClicked(pt):
             win.close()
-            pygame.mixer.music.stop()   #game end. Buh bye!
+            pygame.mixer.music.stop() #game end. Buh bye!
             main()
             break
         pt = win.getMouse()
