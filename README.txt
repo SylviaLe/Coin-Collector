@@ -39,47 +39,22 @@ Packages: pygame,
                     return values: none
                     function: simulates coin collection, signaling successful intake of coins.
             
-  + CoinCollector: INSTANCE VARIABLES:  
-                     player: an instance of Player class
-                     score: the player score, base on time required to finish collecting the coins
-                     isOver: boolean value. True if done collecting the coins, or hit the bomb (extra features)
-                   METHODS: 
-                     play: 
-                        parameters: window
-                        return values: none
-                        function: begin the game, let the player collect coins, start measuring time elapsed
-                     evalScore: 
-                        parameters: none
-                        return values: number of coins collected, player's score base on time
-                        function: calculate the stats of player's round
-                     gameOver: 
-                        parameters: none
-                        return: true of false
-                        function: indicate if the game has ended (#actually not neccessary now, but might need later w/ extra features)
-  
-  + Timer: INSTANCE VARIABLES:
-               win: the window to draw the clock on
-               clockPos: the exact position to draw it
-               timeUp: boolean value, True if the clock reach 00:00
-           METHODS:
-               countdown:
-                  parameters: n, window
-                  return values: none
-                  function: countdown clock from n to 0, n is number of seconds.
-           NOTES:
-               This class is under re-consideration, as it's doing what we want it to
+  + Leaderboard: INSTANCE VARIABLES:  
+                 METHODS: 
+                 
   
 - Pseudocode for main function:
          1. Create a main menu with buttons where user can navigate (i.e. 'Start','Rules','Exit'...)
-         2. Game begins as soon as user clicks 'Start'
-         3. Create a new window 
-         4. Create a Player class
-         5. Create a Timer class
-         6. Print stuffs like 'Ready', 'Go'
-         7. Print out results
-           - User loses if time-out or she/he steps on explosives/cats/holes
-           - User wins: if she/he collects all coins before time-out
-         8. Available options after game ends: Restart or Exit  
+         2. Start game if clicks 'Start', quit game if she clicks 'Exit'.
+         3. Prompt user to choose level of difficulty 
+         4. Create a new window, asking user to type her name 
+         5. Show GUI and play game soundtrack: draw coins, obstacles, character
+         6. Print out results
+           - User loses all score if she/he steps on TNT explosives
+           - User earns score if she/he collects all coins 
+         7. Calculate score(win: score determined by the ellapsed time/lose: score 0)    
+         8. Save score to leaderboard
+         9. Available options after game ends: Restart, Exit, or Leaderboard  
 
 
 
