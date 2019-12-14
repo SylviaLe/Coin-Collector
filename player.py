@@ -19,6 +19,7 @@ class Player:
         self.player.draw(window)
         self.count = 0
         self.coin_sound = pygame.mixer.Sound("coinSound.wav")
+        self.tnt_sound = pygame.mixer.Sound("tntSound.wav")
         self.bomb_sound = pygame.mixer.Sound("bombSound.wav")
         self.fish_sound = pygame.mixer.Sound("fishSound.wav")
        
@@ -39,6 +40,8 @@ class Player:
 
     #Define whether we are getting coins or running into the obstacles       
     def effect(self,window,coords,objectList,imageList,sound,image,delayTime,isCoin):
+        x = self.player.getAnchor().getX()
+        y = self.player.getAnchor().getY()+40
         i = objectList.index(coords)
         del objectList[i]
         imageList[i].undraw()
@@ -46,7 +49,7 @@ class Player:
         pygame.mixer.Sound.play(sound)
         
         if isCoin:
-            text = Text(Point(coords[0],coords[1]+40),"+1")
+            text = Text(Point(x,y),"+1")
             text.setFill("coral")
             text.setStyle("bold")
             text.setSize(16)
@@ -55,7 +58,7 @@ class Player:
             text.undraw()
             self.count += 1
         else:
-            exp = Image(Point(coords[0],coords[1]+40),image)
+            exp = Image(Point(x,y),image)
             exp.draw(window)
             time.sleep(delayTime)
             exp.undraw()
@@ -70,19 +73,25 @@ class Player:
         coords2 = (player_x,player_y + 15)
         coords3 = (player_x,player_y - 15)
         coords = (coords1 or coords2 or coords3)
+        c = 0
 
-        #(coords1 in self.coin.coinList) or (coords2 in self.coin.coinList) or (coords3 in self.coin.coinList)
-        
-        if coords1 in self.coin.coinList:
-            self.effect(window,coords1,self.coin.coinList,self.coin.selectedCoins,self.coin_sound,"coin(1).png",0.2,True)
-        elif coords1 in self.coin.tntList:
-            self.effect(window,coords1,self.coin.tntList,self.coin.selectedTNT,self.bomb_sound,"explosion.png",0.5,False)
-        elif coords1 in self.coin.bombList:
-            self.effect(window,coords1,self.coin.bombList,self.coin.selectedBombs,self.bomb_sound,"explosion.png",0.5,False)
-        elif coords1 in self.coin.fishList:
-            self.effect(window,coords1,self.coin.fishList,self.coin.selectedFish,self.fish_sound,"stars.png",0.4,False)
-
+        for l in [self.coin.coinList,self.coin.tntList,self.coin.bombList,self.coin.fishList]:
+            if (coords1 in l) or (coords2 in l) or (coords3 in l):
+                if coords1 in l:
+                    c = coords1
+                elif coords2 in l:
+                    c = coords2
+                elif coords3 in l:
+                    c = coords3
+                    
+                if l == self.coin.coinList:
+                    self.effect(window,c,self.coin.coinList,self.coin.selectedCoins,self.coin_sound,"coin(1).png",0.2,True)
+                elif l == self.coin.tntList:
+                    self.effect(window,c,self.coin.tntList,self.coin.selectedTNT,self.tnt_sound,"tnt_explosion.png",0.5,False)
+                elif l == self.coin.bombList:
+                    self.effect(window,c,self.coin.bombList,self.coin.selectedBombs,self.bomb_sound,"explosion.png",0.5,False)
+                else:
+                    self.effect(window,c,self.coin.fishList,self.coin.selectedFish,self.fish_sound,"stars.png",0.4,False)
+                    
 if __name__ == '__main__':
     main()
-
-
