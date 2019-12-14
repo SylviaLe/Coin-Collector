@@ -4,13 +4,13 @@ PROBLEM SPECIFICATION AND DESIGN DOCUMENT
 This project creates a game called 'Coin Collector'. 
 How to play: use 'up', 'down', 'left', or 'right' key to move the character around to collect coins, which are randomly generated.
 There will be a countdown clock, so user must get as many coins as possible before time runs out. 
-Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstacles (i.e. explosives, cats, potholes)
-Packages: pygame, 
+Other features: sounds, levels of difficulty(Easy/Medium/Hard) and random obstacles (i.e. explosives, fish bones, bombs)
+Packages: pygame, leaderboard, graphics, button
 
 *** Note: In the document below, 'player' and 'character' are sometimes used interchangably.
 
 - Classes and methods:
-   + Coin: INSTANCE VARIABLES: 
+   + Class Coin: INSTANCE VARIABLES: 
               num: number of coins generated on the window
               selectedPts: a list of center points of all generated coins
               selectedCoins: a list of Image objects of all generated coins
@@ -22,7 +22,7 @@ Packages: pygame,
                   function: randomly generates a specified number of coins on window and 
                             appends their coords to selectedPts and  selectedCoins lists
   
-  + Player: INSTANCE VARIABLES:
+  + Class Player: INSTANCE VARIABLES:
                 coinNum: number of coins to generate 
                 coin: a Coin object, generating coins on window
                 playerImg: an image file (.png or .gif) of player
@@ -34,14 +34,15 @@ Packages: pygame,
                     parameters: window
                     return values: none
                     function: checks for key inputs (up,down,left,or right) and move character accordingly
-                collectCoin
-                    parameters: window
-                    return values: none
-                    function: simulates coin collection, signaling successful intake of coins.
+                playerCollect
+                    parameters: 
+                    return values: 
+                    function: 
             
-  + Leaderboard: INSTANCE VARIABLES:  
+  + Class Leaderboard: INSTANCE VARIABLES:  
                  METHODS: 
                  
+- Kinds of testing you have done and modifications you would make for a future version:
   
 - Pseudocode for main function:
          1. Create a main menu with buttons where user can navigate (i.e. 'Start','Rules','Exit'...)
