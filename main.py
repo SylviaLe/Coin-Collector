@@ -207,7 +207,7 @@ def main(coinNum):
         result = Image(Point(300, 300), 'gameOver.png').draw(win)
         time.sleep(1)
         result.undraw()
-        score = 9999999
+        score = 9999999999
 
     board.update(playerName, score)
         
