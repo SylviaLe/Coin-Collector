@@ -21,10 +21,10 @@ def intro():
     gamename.setStyle('bold')
     gamename.draw(intwin)
 
-    bigFox = Image(Point(90,190),"bigFox.png").draw(intwin)
-    bigCoin = Image(Point(280,200),"bigCoin.png").draw(intwin)
-    bigCoin = Image(Point(365,179),"bigCoin.png").draw(intwin)
-    bigCoin = Image(Point(310,156),"bigCoin.png").draw(intwin)
+    bigFox = Image(Point(90,175),"bigFox.png").draw(intwin)
+    bigCoin = Image(Point(280,205),"bigCoin.png").draw(intwin)
+    bigCoin = Image(Point(365,183),"bigCoin.png").draw(intwin)
+    bigCoin = Image(Point(310,160),"bigCoin.png").draw(intwin)
     
     #Buttons for users to choose what to do
     start = Button(intwin, Point(200,230),75,25,"Start")
