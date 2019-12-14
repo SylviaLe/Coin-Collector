@@ -38,7 +38,7 @@ class Player:
         elif key == 'Right' and player_x + 15 <= 570:  
             self.player.move(15, 0)
 
-    #Define whether we are getting coins or running into the obstacles       
+    #Create visual and sound effects when getting coins or running into obstacles       
     def effect(self,window,coords,objectList,imageList,sound,image,delayTime,isCoin):
         x = self.player.getAnchor().getX()
         y = self.player.getAnchor().getY()+40
