@@ -1,3 +1,8 @@
+#Jin, Sylvia, and Sophie
+#16 Dec. 2019
+#player.py
+#creates the player inside the game, moves it around, collects coins, and effects for it.
+
 from graphics import *
 from coin import *
 import pygame
