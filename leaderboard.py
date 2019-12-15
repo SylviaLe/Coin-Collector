@@ -1,3 +1,8 @@
+#Jin, Sylvia, and Sophie
+#16 Dec. 2019
+#leaderboard.py
+#creates a leaderboard so then we can compare the scores after each game
+
 from graphics import *
 
 class Leaderboard:
