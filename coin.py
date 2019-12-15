@@ -1,3 +1,9 @@
+#Jin, Sylvia, and Sophie
+#16 Dec. 2019
+#coin.py
+#creates coins and obstacles in random places
+
+
 from random import randrange
 from graphics import *
 
