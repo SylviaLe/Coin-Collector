@@ -45,8 +45,8 @@ Packages: pygame, leaderboard, graphics, button
   + Class Leaderboard: INSTANCE VARIABLES: 
                        file: name of the text file we are keeping the scores in.
                        data: reading the text file
-                       board: deleting the last place out of the leaderboard
-                       name: ???
+                       board: a list consisting of nested lists that contain name-score pairs inside
+                       name: Stores the name of the people currently exist in the board.
                        
                  METHODS: 
                      update
