@@ -1,3 +1,8 @@
+#Jin, Sylvia, and Sophie
+#16 Dec. 2019
+#main.py
+#main function of the game. This is where we gather all the classes and run it all together.
+
 from coin import *
 from graphics import *
 from player import *
