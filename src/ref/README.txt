@@ -35,28 +35,12 @@ Packages: pygame, leaderboard, graphics, button
                     return values: none
                     function: checks for key inputs (up,down,left,or right) and move character accordingly
                 playerCollect
-                    parameters: window
-                    return values: none
-                    function: How big of a space the fox will cover
-                effect
-                  parameters: window, coords, objectList, imageList, sound, image, delayTime, isCoin
-                  return values: None
-                  function: play sound and pops up "+1" above the fox to indicate that the user has collected a coin.
-  + Class Leaderboard: INSTANCE VARIABLES: 
-                       file: name of the text file we are keeping the scores in.
-                       data: reading the text file
-                       board: a list consisting of nested lists that contain name-score pairs inside
-                       name: Stores the name of the people currently exist in the board.
-                       
+                    parameters: 
+                    return values: 
+                    function: 
+            
+  + Class Leaderboard: INSTANCE VARIABLES:  
                  METHODS: 
-                     update
-                        parameters: name, score
-                        return values: none
-                        function: updates the leaderboard.
-                     show
-                        parameters: num, iniNamePos, iniScorePos, window
-                        return values: none
-                        function: shows the text on the graphics window
                  
 - Kinds of testing you have done and modifications you would make for a future version:
   

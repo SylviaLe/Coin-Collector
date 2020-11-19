@@ -1,8 +1,3 @@
-#Jin, Sylvia, and Sophie
-#16 Dec. 2019
-#player.py
-#creates the player inside the game, moves it around, collects coins, and effects for it.
-
 from graphics import *
 from coin import *
 import pygame
@@ -18,15 +13,15 @@ class Player:
         self.coinNum = num
         self.coin = Coin(self.coinNum, window)
 
-        self.playerImg = 'fox.png'
+        self.playerImg = 'img/fox.png'
         self.iniPos = Point(300,300)
         self.player = Image(self.iniPos, self.playerImg)
         self.player.draw(window)
         self.count = 0
-        self.coin_sound = pygame.mixer.Sound("coinSound.wav")
-        self.tnt_sound = pygame.mixer.Sound("tntSound.wav")
-        self.bomb_sound = pygame.mixer.Sound("bombSound.wav")
-        self.fish_sound = pygame.mixer.Sound("fishSound.wav")
+        self.coin_sound = pygame.mixer.Sound("sound/coinSound.wav")
+        self.tnt_sound = pygame.mixer.Sound("sound/tntSound.wav")
+        self.bomb_sound = pygame.mixer.Sound("sound/bombSound.wav")
+        self.fish_sound = pygame.mixer.Sound("sound/fishSound.wav")
         self.gameOver = False
        
     #How we are moving the fox
@@ -91,14 +86,14 @@ class Player:
                     c = coords3
                     
                 if l == self.coin.coinList:
-                    self.effect(window,c,self.coin.coinList,self.coin.selectedCoins,self.coin_sound,"coin(1).png",0.2,True)
+                    self.effect(window,c,self.coin.coinList,self.coin.selectedCoins,self.coin_sound,"img/coin(1).png",0.2,True)
                 elif l == self.coin.tntList:
-                    self.effect(window,c,self.coin.tntList,self.coin.selectedTNT,self.tnt_sound,"tnt_explosion.png",0.5,False)
+                    self.effect(window,c,self.coin.tntList,self.coin.selectedTNT,self.tnt_sound,"img/tnt_explosion.png",0.5,False)
                     self.gameOver = True
                 elif l == self.coin.bombList:
-                    self.effect(window,c,self.coin.bombList,self.coin.selectedBombs,self.bomb_sound,"explosion.png",0.5,False)
+                    self.effect(window,c,self.coin.bombList,self.coin.selectedBombs,self.bomb_sound,"img/explosion.png",0.5,False)
                 else:
-                    self.effect(window,c,self.coin.fishList,self.coin.selectedFish,self.fish_sound,"stars.png",0.4,False)
+                    self.effect(window,c,self.coin.fishList,self.coin.selectedFish,self.fish_sound,"img/stars.png",0.4,False)
                     
 if __name__ == '__main__':
     main()

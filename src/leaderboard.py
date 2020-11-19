@@ -1,14 +1,9 @@
-#Jin, Sylvia, and Sophie
-#16 Dec. 2019
-#leaderboard.py
-#creates a leaderboard so then we can compare the scores after each game
-
 from graphics import *
 
 class Leaderboard:
     """This class creates leaderboard, which will rank the players' score and compare them"""
     def __init__(self):
-        self.file = 'leaderboard.txt'
+        self.file = 'ref/leaderboard.txt'
         with open(self.file, 'r') as file: #open the file
             data = file.readlines()
             self.board = eval(data[-1])  #cuz I cannot think of a short way to delete the previous session's data, here get the very last line of the file
