@@ -2,9 +2,9 @@
 
 Coin Collector is a game developed using Python, with the help of John Zelle's graphic module and PyGame library. This serve as the final project to my Intro to CS course
 
-![pic1](src/img/screenshot%(2).png)
-![pic2](src/img/screenshot%(3).png)
-![pic3](src/img/screenshot%(1).png)
+![pic1](./src/img/screenshot%(2).png)
+![pic2](./src/img/screenshot%(3).png)
+![pic3](./src/img/screenshot%(1).png)
 
 ## Installation
 
